@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become:
+  pre_tasks:
+
+  - name: Install Updates (Ubuntu)
+    tags: always
+    apt:
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: ubuntu_server
+  become: true
+  roles:
+    - NTP
+    - OpenStack-packages
+    - SQL-Database
+    - Message-Queue
+    - Memcached
+    - Etcd 

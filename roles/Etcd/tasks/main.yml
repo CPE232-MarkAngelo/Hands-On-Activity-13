@@ -1,0 +1,22 @@
+### Installation of ETCD ###
+
+- name: install etcd packages
+  shell:
+    sudo apt install -y etcd
+
+- name: edit /etc/default/etcd
+  lineinfile:
+    path: /etc/default/etcd
+    state: present
+    line: "{{ item.regexp }}"
+  with_items:
+  - {regexp: "ETCD_INITIAL_CLUSTER", line: 'ETCD_INITIAL_CLUSTER="controller=http://10.0.0.11:2380"'}
+  - {regexp: "ETCD_ADVERTISE_PEER_URLS", line: 'ETCD_ADVERTISE_PEER_URLS="controller=http://10.0.0.11:2380"'}
+  - {regexp: "ETCD_ADVERTISE_CLIENT_URLS", line: 'ETCD_ADVERTISE_CLIENT_URLS="controller=http://10.0.0.11:2379"'}
+  - {regexp: "ETCD_LISTEN_CLIENT_URLS", line: 'ETCD_LISTEN_CLIENT_URLS="controller=http://10.0.0.11:2379"'}
+
+- name: enable and restartthe etcd service
+  service:
+    name: etcd
+    state: restarted
+    enable: true

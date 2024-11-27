@@ -1,0 +1,15 @@
+### Installation of Memcached ###
+- name: install and configure components
+  shell: 
+    sudo apt install -y memcached python3-memcache
+
+- name: edit memcached configuration file
+  ansible.builtin.lineinfile:
+    state: present
+    dest: /etc/memcached.conf
+    regexp: "-l 127.0.0.1"
+    line: "-l 10.0.0.11"
+
+- name: restart memcached service
+  shell:
+    service memcached restart

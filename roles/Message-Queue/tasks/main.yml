@@ -1,0 +1,13 @@
+### Installation of Message-Queue ###
+
+- name: install the package
+  shell:
+    sudo apt install -y rabbitmq-server
+
+- name: add the openstack user
+  shell:
+    rabbitmqctl add_ser ma_localmachine RABBIT_AJK
+
+- name: permit configuration, write, and read access
+  shell:
+    rabbitmysctl set_permissions ma_localmachine ".*" ".*" ".*"
