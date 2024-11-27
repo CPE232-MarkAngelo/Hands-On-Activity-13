@@ -2,7 +2,7 @@
 
 - name: Install -y chrony
   shell:
-    sudo apt insall -y chrony
+    sudo apt install -y chrony
 
 - name: Edit chrony .conf
   ansible.builtin.lineinfile:

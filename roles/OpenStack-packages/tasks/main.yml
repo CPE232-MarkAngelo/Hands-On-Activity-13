@@ -1,11 +1,17 @@
 ### Installation of Openstack-packages
 
-- name: installing nova-compute
-  shell:
-    apt install -y nova-compute
+- name: Install python3-openstackclient
+  apt:
+    name: python3-openstackclient
+    state: present
+  become: true
+
 
 ### Client Installation
 
-- name: installing python3-openstack client
-  shell:
-    apt installing - python3-openstackclient
+- name: Install python3-openstackclient
+  apt:
+    name: python3-openstackclient
+    state: present
+  become: true
+

@@ -15,8 +15,9 @@
   - {regexp: "ETCD_ADVERTISE_CLIENT_URLS", line: 'ETCD_ADVERTISE_CLIENT_URLS="controller=http://10.0.0.11:2379"'}
   - {regexp: "ETCD_LISTEN_CLIENT_URLS", line: 'ETCD_LISTEN_CLIENT_URLS="controller=http://10.0.0.11:2379"'}
 
-- name: enable and restartthe etcd service
-  service:
+- name: Enable and restart the etcd service
+  ansible.legacy.systemd:
     name: etcd
     state: restarted
-    enable: true
+    enabled: true
+  become: true
